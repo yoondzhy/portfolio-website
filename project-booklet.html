@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booklet — "When You Let Your Ideas Out" | Makhabbat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/blasten/turn.js@master/turn.min.js"></script>
+  <style>
+    :root {
+      --white: #f9f8f4;
+      --cream: #e6e4df;
+      --cream-dim: #bab9b4;
+      --muted: #7a7974;
+      --border: #dcd9d5;
+      --surface: #fbfbf9;
+      --dark: #1a1a1a;
+    }
+
+    /* Project page styles matching Gen Z / NCT pages */
+    .proj-hero {
+      min-height: 52vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 2.5rem 3.5rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .proj-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .proj-breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .proj-breadcrumb a:hover { color: var(--cream); }
+    .proj-breadcrumb span { opacity: 0.4; }
+
+    .proj-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      max-width: 860px;
+      margin-bottom: 1.75rem;
+    }
+
+    .proj-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .proj-tool {
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      background: transparent;
+    }
+
+    .proj-meta-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .proj-meta-cell {
+      padding: 1.75rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .proj-meta-cell:last-child { border-right: none; }
+
+    .proj-meta-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .proj-meta-val {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .proj-section {
+      padding: 5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .proj-section:last-of-type { border-bottom: none; }
+
+    .proj-eyebrow {
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .proj-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .proj-heading em { 
+      font-style: italic; 
+      color: var(--cream); 
+    }
+
+    .proj-body {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.9;
+      max-width: 660px;
+    }
+
+    .proj-body p + p { margin-top: 1rem; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .process-list { margin-top: 2.5rem; }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .process-step:last-child { border-bottom: 1px solid var(--border); }
+
+    .ps-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--muted);
+      padding-top: 0.1rem;
+    }
+
+    .ps-title {
+      font-size: 0.82rem;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+
+    .ps-desc {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+    }
+
+    .proj-footer-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .pfn-item {
+      padding: 2.25rem 2.5rem;
+      text-decoration: none;
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: background .2s;
+    }
+
+    .pfn-item:first-child { border-right: 1px solid var(--border); }
+    .pfn-item:hover { background: rgba(255,255,255,0.03); }
+
+    .pfn-dir {
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .pfn-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .pfn-next {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    /* Flipbook styles */
+    .booklet-shell {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .booklet-viewer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #flipbook {
+      width: 1000px;
+      height: 700px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    #flipbook .page {
+      background: #fffdf8;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
+
+    #flipbook .page img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .book-controls {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .book-controls button {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--cream);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      border-radius: 4px;
+    }
+
+    .book-controls button:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .book-note {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 780px) {
+      .proj-hero { padding: 7rem 1.5rem 2.5rem; }
+      .proj-meta-strip { grid-template-columns: 1fr 1fr; }
+      .proj-meta-cell { 
+        border-bottom: 1px solid var(--border); 
+        border-right: none; 
+      }
+      .proj-meta-cell:nth-child(2n) { border-left: 1px solid var(--border); }
+      .proj-section { padding: 3.5rem 1.5rem; }
+      .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .proj-footer-nav { grid-template-columns: 1fr; }
+      .pfn-item:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .pfn-next { align-items: flex-start; text-align: left; }
+
+      .booklet-shell { padding: 1rem; }
+      #flipbook { height: 460px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="proj-hero">
+  <div class="proj-breadcrumb">
+    <a href="portfolio.html">Makhabbat</a>
+    <span>/</span>
+    <a href="portfolio.html#projects">Work</a>
+    <span>/</span>
+    <span style="color:var(--cream-dim)">Booklet</span>
+  </div>
+  <h1 class="proj-title">"When You Let Your Ideas Out" <em>Booklet</em></h1>
+  <div class="proj-tools">
+    <span class="proj-tool">Adobe InDesign</span>
+    <span class="proj-tool">ID202</span>
+    <span class="proj-tool">Idea & Expression</span>
+  </div>
+</header>
+
+<div class="proj-meta-strip">
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Course</div>
+    <div class="proj-meta-val">ID202<br/>Idea & Expression</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Type</div>
+    <div class="proj-meta-val">Booklet</div>
+    <div class="proj-meta-val">Editorial Design</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Tools</div>
+    <div class="proj-meta-val">Adobe InDesign</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Year</div>
+    <div class="proj-meta-val">2025 fall</div>
+  </div>
+</div>
+
+<section class="proj-section">
+  <div class="two-col">
+    <div>
+      <div class="proj-eyebrow">Overview</div>
+      <h2 class="proj-heading">A visual narrative from <em>randomly selected</em> images</h2>
+      <div class="proj-body">
+        <p>This booklet was created from images randomly gathered from our class's shared image pool, then transformed into a cohesive visual narrative. The challenge was to find rhythm, contrast, and surprising relationships between unrelated material.</p>
+        <p>Rather than forcing a linear story, the design focused on editorial pacing through sequence, spacing, typography, and spread composition that felt spontaneous yet intentional.</div>
+    </div>
+
+    <div>
+      <div class="proj-eyebrow">Interactive View</div>
+      <h2 class="proj-heading">Flip through the <em>complete booklet</em></h2>
+
+      <div class="booklet-shell">
+        <div class="booklet-viewer">
+          <div id="flipbook">
+            <div class="page cover"><img src="images/[draft]the story from the collected photos.png" alt="Booklet cover"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos2.png" alt="Booklet page 2"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos3.png" alt="Booklet page 3"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos4.png" alt="Booklet page 4"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos5.png" alt="Booklet page 5"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos6.png" alt="Booklet page 6"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos7.png" alt="Booklet page 7"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos8.png" alt="Booklet page 8"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos9.png" alt="Booklet page 9"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos10.png" alt="Booklet page 10"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos11.png" alt="Booklet page 11"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos12.png" alt="Booklet page 12"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos13.png" alt="Booklet page 13"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos14.png" alt="Booklet page 14"></div>
+            <div class="page"><img src="images/[draft]the story from the collected photos15.png" alt="Booklet page 15"></div>
+            <div class="page back-cover"><img src="images/[draft]the story from the collected photos16.png" alt="Booklet back cover"></div>
+          </div>
+
+          <div class="book-controls">
+            <button id="prevPage" type="button">Previous</button>
+            <button id="nextPage" type="button">Next</button>
+          </div>
+          <!-- <div class="book-note">Drag corners, swipe, or use buttons to turn pages</div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-eyebrow">Process</div>
+  <h2 class="proj-heading">From random images to <em>cohesive narrative</em></h2>
+
+  <div class="process-list">
+    <div class="process-step">
+      <div class="ps-num">01</div>
+      <div>
+        <div class="ps-title">Image pool selection</div>
+        <div class="ps-desc">Started with randomly selected images from class pool, looking for visual motifs, repeated shapes, color relationships, and mood connections that could create continuity.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">02</div>
+      <div>
+        <div class="ps-title">Spread composition</div>
+        <div class="ps-desc">Designed with center fold always in mind. Two-page relationships needed to feel intentional rather than like separate single-page posters placed side by side.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">03</div>
+      <div>
+        <div class="ps-title">Typography rhythm</div>
+        <div class="ps-desc">Used layout and typography to create moments of pause, contrast, and surprise. Goal was exploratory reading experience that still felt coherent and paced.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">04</div>
+      <div>
+        <div class="ps-title">Digital adaptation</div>
+        <div class="ps-desc">Translated printed booklet into interactive flipbook format to preserve spread-based reading experience online while maintaining the editorial feeling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="two-col">
+    <div>
+      <div class="proj-eyebrow">Reflection</div>
+      <h2 class="proj-heading">Key takeaways</h2>
+      <div class="proj-body">
+        <p>Learned how much narrative power comes from sequencing alone. Even unrelated image fragments become meaningful through deliberate layout decisions about rhythm and progression.</p>
+        <p>Realized spread design requires thinking in pairs, not just individual pages. The relationship between facing pages creates half the reading experience.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="proj-eyebrow">Presentation choice</div>
+      <h2 class="proj-heading">Why flipbook format</h2>
+      <div class="proj-body">
+        <p>Unlike image gallery, flipbook preserves the sequential reading and page-turning sensation. This maintains the editorial intent and makes spread relationships immediately visible.</p>
+        <p>For spread-dependent work, presentation format becomes part of the work itself rather than neutral documentation container.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="proj-footer-nav">
+  <a href="portfolio.html#projects" class="pfn-item">
+    <span class="pfn-dir">← Back</span>
+    <span class="pfn-title">All selected work</span>
+  </a>
+  <a href="project-nct-network.html" class="pfn-item pfn-next">
+    <span class="pfn-dir">Next →</span>
+    <span class="pfn-title">"NCT U Network" Data Visualization</span>
+  </a>
+</nav>
+
+<script>
+  $(document).ready(function() {
+    $("#flipbook").turn({
+      width: 1000,
+      height: 700,
+      autoCenter: true,
+      display: "double",
+      acceleration: true,
+      gradients: true,
+      elevation: 50
+    });
+
+    $("#prevPage").click(function() {
+      $("#flipbook").turn("previous");
+    });
+
+    $("#nextPage").click(function() {
+      $("#flipbook").turn("next");
+    });
+  });
+</script>
+
+</body>
+</html>

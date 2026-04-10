@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>"Gen Z Trapped: Infinite Scrolls, Clicks, Fatigue" Infographic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+/* ── Project page extras ── */
+.poster-full {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--surface);
+}
+
+.poster-full img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.proj-hero {
+  min-height: 52vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 8rem 2.5rem 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.proj-breadcrumb {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 2rem;
+}
+.proj-breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
+.proj-breadcrumb a:hover { color: var(--cream); }
+.proj-breadcrumb span { opacity: 0.4; }
+.proj-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5.5vw, 5rem); font-weight: 700;
+  color: var(--white); letter-spacing: -0.03em; line-height: 1.05;
+  max-width: 860px; margin-bottom: 1.75rem;
+}
+.proj-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.proj-tool {
+  font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cream-dim); border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem; background: transparent;
+}
+
+/* Meta strip */
+.proj-meta-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.proj-meta-cell {
+  padding: 1.75rem 2.5rem;
+  border-right: 1px solid var(--border);
+}
+.proj-meta-cell:last-child { border-right: none; }
+.proj-meta-label { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.proj-meta-val { font-size: 0.85rem; color: var(--cream); line-height: 1.5; }
+
+/* Content blocks */
+.proj-section { padding: 5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.proj-section:last-of-type { border-bottom: none; }
+.proj-eyebrow { font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+.proj-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem); font-weight: 700;
+  color: var(--white); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem;
+}
+.proj-heading em { font-style: italic; color: var(--cream); }
+.proj-body { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.9; max-width: 660px; }
+.proj-body p + p { margin-top: 1rem; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
+.two-col-img { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
+
+/* Image slots */
+.img-slot {
+  background: var(--surface); aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.55rem; letter-spacing: 0.18em;
+  text-transform: uppercase; overflow: hidden;
+}
+.img-slot.tall { aspect-ratio: 2/3; }
+.img-slot.wide { aspect-ratio: 16/9; }
+.img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-caption { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.75rem; }
+
+/* Process list */
+.process-list { margin-top: 2.5rem; }
+.process-step {
+  display: grid; grid-template-columns: 48px 1fr;
+  gap: 1.75rem; align-items: start;
+  padding: 1.5rem 0; border-top: 1px solid var(--border);
+}
+.process-step:last-child { border-bottom: 1px solid var(--border); }
+.ps-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); padding-top: 0.1rem; }
+.ps-title { font-size: 0.82rem; color: var(--cream); margin-bottom: 0.3rem; }
+.ps-desc { font-size: 0.75rem; color: var(--cream-dim); line-height: 1.75; }
+
+/* Prev/next nav */
+.proj-footer-nav {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border);
+}
+.pfn-item {
+  padding: 2.25rem 2.5rem; text-decoration: none; color: var(--cream);
+  display: flex; flex-direction: column; gap: 0.5rem;
+  transition: background .2s;
+}
+.pfn-item:first-child { border-right: 1px solid var(--border); }
+.pfn-item:hover { background: var(--surface); }
+.pfn-dir { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.pfn-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); line-height: 1.3; }
+.pfn-next { align-items: flex-end; text-align: right; }
+
+@media (max-width: 780px) {
+  .proj-hero { padding: 7rem 1.5rem 2.5rem; }
+  .proj-meta-strip { grid-template-columns: 1fr 1fr; }
+  .proj-meta-cell { border-bottom: 1px solid var(--border); }
+  .proj-section { padding: 3.5rem 1.5rem; }
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  .three-col, .two-col-img { grid-template-columns: 1fr; }
+  .proj-footer-nav { grid-template-columns: 1fr; }
+  .pfn-item:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .pfn-next { align-items: flex-start; text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="proj-hero">
+  <div class="proj-meta-label"></div>
+  <div class="proj-breadcrumb">
+    <a href="portfolio.html">Makhabbat</a>
+    <span>/</span>
+    <a href="portfolio.html#projects">Work</a>
+    <span>/</span>
+    <span style="color:var(--cream-dim)">"NCT U Network"</span>
+  </div>
+  <h1 class="proj-title">"NCT U Network" — Data Visualization</h1>
+  <div class="proj-tools">
+    <span class="proj-tool">Adobe Illustrator</span>
+    <span class="proj-tool">D3.js</span>
+    <span class="proj-tool">Information Design</span>
+    <span class="proj-tool">ID221</span>
+  </div>
+</header>
+
+<!-- META STRIP -->
+<div class="proj-meta-strip">
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Course</div>
+    <div class="proj-meta-val">ID221<br/>Information Design</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Type</div>
+    <div class="proj-meta-val">Infographic</div>
+    <div class="proj-meta-val">Data Visualization</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Tools</div>
+    <div class="proj-meta-val">Adobe Illustrator</div>
+    <div class="proj-meta-val">D3.js</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Year</div>
+    <div class="proj-meta-val">2025 fall</div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="proj-section">
+  <div class="two-col">
+    <div>
+      <div class="proj-eyebrow">Overview</div>
+      <h2 class="proj-heading">Visualizing a group built on <em>fluid</em> connections</h2>
+      <div class="proj-body">
+        <p>This project explores NCT U as a network rather than a fixed unit. Instead of focusing only on discography, I wanted to show how members connect, reappear, and form new combinations across different releases and eras.</p>
+        <p>The final poster maps these changing relationships through a chord-diagram-based system, emphasizing both continuity and variation. It highlights how some members become recurring connectors while others appear in more specific or temporary combinations.</p>
+      </div>
+
+      <h2 class="proj-heading" style="margin-top:3rem;">How it was made</h2>
+      <div class="proj-body">
+        <p>[11.11.2025] I began with a broad interest in K-pop data and NCT’s large-scale structure, first considering awards, unit history, and progression over time.</p>
+
+        <p>[19.11.2025] I collected references and possible data sources, including album sales, YouTube statistics, Spotify streams, fan-made documentation, and discography archives. During that stage, I realized that discography alone felt too expected and did not capture what makes NCT especially interesting.</p>
+
+        <p>[20.11.2025] After feedback from my professor, I shifted the focus from releases themselves to members and relationships. That feedback helped clarify that the most compelling part of NCT is not just the amount of content, but the unusual member structure and how it constantly reorganizes.</p>
+
+        <p>[23.11.2025] I explored several possible directions. One idea was a member-connection network outside the fixed units. Another was a heatmap comparing individual member activity, and another was a timeline visualization focused on Mark as one of the most cross-unit members.</p>
+
+        <p>I eventually chose the NCT U network approach because it best reflected the group’s identity. I developed a circular composition showing member combinations, used color coding to distinguish affiliations, and structured the poster around key years — 2016, 2018, 2020, and 2022 — to reveal how the scale and density of collaborations changed over time.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="poster-full">
+        <img src="p3_versionfornotion.png" alt="Final NCT U Network data visualization poster"/>
+      </div>
+      <div class="img-caption">Final Poster</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="proj-section">
+  <div class="proj-eyebrow">Process</div>
+  <h2 class="proj-heading">From broad fandom data to a clearer <em>network</em> narrative</h2>
+
+  <div class="process-list">
+    <div class="process-step">
+      <div class="ps-num">01</div>
+      <div>
+        <div class="ps-title">Topic framing</div>
+        <div class="ps-desc">I started from the wider category of K-pop and NCT, considering sales, streaming performance, unit history, and overall activity. At that point, the project was information-heavy, but the story still felt too general.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">02</div>
+      <div>
+        <div class="ps-title">Feedback and redirection</div>
+        <div class="ps-desc">Professor feedback pushed me to focus on members rather than discography. That shift helped me identify the real design question: how can I make NCT U’s changing combinations visible in a way that feels intuitive and visually engaging?</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">03</div>
+      <div>
+        <div class="ps-title">Testing multiple concepts</div>
+        <div class="ps-desc">I tested several possibilities, including a hand-drawn member network, an all-member activity heatmap, and a Mark-centered timeline. These drafts helped me compare what was interesting analytically versus what was strong enough visually for a poster.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">04</div>
+      <div>
+        <div class="ps-title">Final system</div>
+        <div class="ps-desc">The final direction used circular network visualizations to compare major NCT U phases. I focused on combinations, recurring members, and shifts in density, then refined the composition in Illustrator to balance explanation, hierarchy, and visual impact.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="proj-section">
+  <div class="two-col">
+    <div>
+      <div class="proj-eyebrow">Reflection</div>
+      <h2 class="proj-heading">What I learned</h2>
+      <div class="proj-body">
+        <p>This project taught me that the most interesting data story is not always the biggest or most complete one. Narrowing the focus from all NCT-related information to member relationships made the visualization much more specific and meaningful.</p>
+        <p>I also learned how important iteration is in data visualization. The early ideas — including the heatmap and the Mark-focused concept — were useful not because they became the final work, but because they helped me understand what kind of structure and storytelling this project really needed.</p>
+      </div>
+    </div>
+    <div>
+      <div class="proj-eyebrow">Challenges</div>
+      <h2 class="proj-heading">What was hard</h2>
+      <div class="proj-body">
+        <p>The hardest part was finding a format that could handle NCT’s complexity without becoming unreadable. Because the group has many members, units, and overlapping appearances, some layouts became too crowded or failed to justify certain members or units.</p>
+        <p>Another challenge was balancing fan knowledge with clarity for outside viewers. I wanted the work to stay rooted in the specificity of NCT while still being understandable as a visual explanation of connection, scale, and change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREV / NEXT -->
+<nav class="proj-footer-nav">
+  <a href="portfolio.html#projects" class="pfn-item">
+    <span class="pfn-dir">← Back</span>
+    <span class="pfn-title">All selected work</span>
+  </a>
+  <a href="project-genz-infographic.html" class="pfn-item pfn-next">
+    <span class="pfn-dir">Previous →</span>
+    <span class="pfn-title">"Gen Z Trapped" Doomscrolling Infographic</span>
+  </a>
+</nav>
+
+<footer>
+  <span>© 2025 Makhabbat Amanbay</span>
+  <span>KAIST · Industrial Design</span>
+  <a href="portfolio.html">← Portfolio</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

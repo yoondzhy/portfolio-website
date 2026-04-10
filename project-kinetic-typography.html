@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinetic Typography — Yel, "About Last Night"</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+  .proj-hero {
+    min-height: 52vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 2.5rem 3.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proj-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .proj-breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+
+  .proj-breadcrumb a:hover { color: var(--cream); }
+  .proj-breadcrumb span { opacity: 0.4; }
+
+  .proj-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 5rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 900px;
+    margin-bottom: 1.75rem;
+  }
+
+  .proj-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .proj-tool {
+    font-size: 0.52rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    background: transparent;
+  }
+
+  .proj-meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proj-meta-cell {
+    padding: 1.75rem 2.5rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .proj-meta-cell:last-child { border-right: none; }
+
+  .proj-meta-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .proj-meta-val {
+    font-size: 0.85rem;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+
+  .proj-section {
+    padding: 5rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proj-section:last-of-type { border-bottom: none; }
+
+  .proj-eyebrow {
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .proj-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .proj-heading em { font-style: italic; color: var(--cream); }
+
+  .proj-body {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.9;
+    max-width: 660px;
+  }
+
+  .proj-body p + p { margin-top: 1rem; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .process-list { margin-top: 2.5rem; }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.75rem;
+    align-items: start;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .process-step:last-child { border-bottom: 1px solid var(--border); }
+
+  .ps-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--muted);
+    padding-top: 0.1rem;
+  }
+
+  .ps-title {
+    font-size: 0.82rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .ps-desc {
+    font-size: 0.75rem;
+    color: var(--cream-dim);
+    line-height: 1.75;
+  }
+
+  .video-shell {
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1rem;
+  }
+
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .video-caption {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.75rem;
+  }
+
+  .proj-footer-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+
+  .pfn-item {
+    padding: 2.25rem 2.5rem;
+    text-decoration: none;
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background .2s;
+  }
+
+  .pfn-item:first-child { border-right: 1px solid var(--border); }
+  .pfn-item:hover { background: var(--surface); }
+
+  .pfn-dir {
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .pfn-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .pfn-next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  @media (max-width: 780px) {
+    .proj-hero { padding: 7rem 1.5rem 2.5rem; }
+    .proj-meta-strip { grid-template-columns: 1fr 1fr; }
+    .proj-meta-cell { border-bottom: 1px solid var(--border); }
+    .proj-section { padding: 3.5rem 1.5rem; }
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    .proj-footer-nav { grid-template-columns: 1fr; }
+    .pfn-item:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .pfn-next { align-items: flex-start; text-align: left; }
+  }
+  </style>
+</head>
+<body>
+
+<header class="proj-hero">
+  <div class="proj-breadcrumb">
+    <a href="portfolio.html">Makhabbat</a>
+    <span>/</span>
+    <a href="portfolio.html#projects">Work</a>
+    <span>/</span>
+    <span style="color:var(--cream-dim)">Kinetic Typography</span>
+  </div>
+  <h1 class="proj-title">Kinetic Typography — Yel, “About Last Night”</h1>
+  <div class="proj-tools">
+    <span class="proj-tool">Adobe After Effects</span>
+    <span class="proj-tool">Moving Image Design</span>
+    <span class="proj-tool">ID314</span>
+  </div>
+</header>
+
+<div class="proj-meta-strip">
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Course</div>
+    <div class="proj-meta-val">ID314<br/>Moving Image Design</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Type</div>
+    <div class="proj-meta-val">Kinetic Typography</div>
+    <div class="proj-meta-val">Lyrics Video</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Tools</div>
+    <div class="proj-meta-val">Adobe After Effects</div>
+  </div>
+  <div class="proj-meta-cell">
+    <div class="proj-meta-label">Year</div>
+    <div class="proj-meta-val">2025 fall</div>
+  </div>
+</div>
+
+<section class="proj-section">
+  <div class="two-col">
+    <div>
+      <div class="proj-eyebrow">Overview</div>
+      <h2 class="proj-heading">Translating music into <em>motion</em> and type</h2>
+      <div class="proj-body">
+        <p>This project is a kinetic typography lyrics video created for Yel’s “About Last Night.” I wanted to explore how motion, timing, and typographic treatment could carry not just the words of the song, but also its mood and emotional pacing.</p>
+        <p>I was drawn to the track because of its calm but emotionally layered atmosphere. The goal was to create a visual language that felt intimate, rhythmic, and expressive without overpowering the music itself.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="proj-eyebrow">Video</div>
+      <h2 class="proj-heading">Watch the final <em>piece</em></h2>
+      <div class="video-shell">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/excYNUALeTI"
+            title="Kinetic Typography - Yel About Last Night"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-caption">Final video — embedded from YouTube</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-eyebrow">Process</div>
+  <h2 class="proj-heading">Exploring tempo, tone, and <em>emotion</em></h2>
+
+  <div class="process-list">
+    <div class="process-step">
+      <div class="ps-num">01</div>
+      <div>
+        <div class="ps-title">Song selection</div>
+        <div class="ps-desc">I chose “About Last Night” because its chill atmosphere and emotional subtlety felt well suited to a typography-based motion piece. Instead of relying on dramatic visuals, I wanted to see how far type alone could carry feeling.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">02</div>
+      <div>
+        <div class="ps-title">Mood and pacing</div>
+        <div class="ps-desc">Before animating, I focused on the rhythm of the lyrics and the emotional changes across the track. This helped me decide where motion should feel restrained, where it should expand, and where text should hold tension or softness.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">03</div>
+      <div>
+        <div class="ps-title">Typography in motion</div>
+        <div class="ps-desc">The core challenge was to make typography behave like a performance element. Scale, spacing, entry timing, and transitions were all used to reflect tone, tempo, and emphasis in the song rather than just display lyrics on screen.</div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="ps-num">04</div>
+      <div>
+        <div class="ps-title">Refinement</div>
+        <div class="ps-desc">I refined the piece by adjusting timing and transitions so that the animation would feel emotionally aligned with the audio. The final result aimed to balance readability with expressive motion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="two-col">
+    <div>
+      <div class="proj-eyebrow">Reflection</div>
+      <h2 class="proj-heading">What I learned</h2>
+      <div class="proj-body">
+        <p>This project taught me that motion design is not only about making elements move, but about making them move with intention. Even small changes in timing or easing can completely change how a scene feels emotionally.</p>
+        <p>It also made me more aware of typography as something performative. Letters can act almost like voices or gestures when they are paced carefully and given the right visual weight.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="proj-eyebrow">Challenge</div>
+      <h2 class="proj-heading">Balancing expression and clarity</h2>
+      <div class="proj-body">
+        <p>The most difficult part was keeping the work expressive without making it overly busy. Because kinetic typography depends on movement, it can easily become distracting if every lyric tries to demand attention at once.</p>
+        <p>I had to think carefully about when to emphasize a phrase and when to let the song breathe. That balance between readability and atmosphere became the most important design decision in the project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="proj-footer-nav">
+  <a href="portfolio.html#projects" class="pfn-item">
+    <span class="pfn-dir">← Back</span>
+    <span class="pfn-title">All selected work</span>
+  </a>
+  <a href="project-booklet.html" class="pfn-item pfn-next">
+    <span class="pfn-dir">Previous →</span>
+    <span class="pfn-title">Booklet — “When You Let Your Ideas Out”</span>
+  </a>
+</nav>
+
+</body>
+</html>
