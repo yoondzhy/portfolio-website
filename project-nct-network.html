@@ -3,55 +3,154 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>"Gen Z Trapped: Infinite Scrolls, Clicks, Fatigue" Infographic</title>
+<title>NCT U Network — Data Visualization · Makhabbat Amanbay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-/* ── Project page extras ── */
-.poster-full {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  background: var(--surface);
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0c0c0b;
+  --surface:   #111110;
+  --surface2:  #161614;
+  --border:    rgba(255,255,255,0.08);
+  --border-hi: rgba(255,255,255,0.15);
+  --white:     #f0ede6;
+  --cream:     #c8c3b4;
+  --cream-dim: #8a8578;
+  --muted:     #4e4c46;
+  --accent:    #c9a96e;
+  --accent-dim:rgba(201,169,110,0.15);
+  --accent-glow:rgba(201,169,110,0.06);
 }
 
-.poster-full img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.proj-hero {
-  min-height: 52vh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 8rem 2.5rem 3.5rem;
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  background: rgba(12,12,11,0.85);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
-.proj-breadcrumb {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 2rem;
+.nav-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cream-dim);
 }
-.proj-breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
-.proj-breadcrumb a:hover { color: var(--cream); }
-.proj-breadcrumb span { opacity: 0.4; }
-.proj-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5.5vw, 5rem); font-weight: 700;
-  color: var(--white); letter-spacing: -0.03em; line-height: 1.05;
-  max-width: 860px; margin-bottom: 1.75rem;
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); transition: color .2s;
 }
-.proj-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.proj-tool {
-  font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--cream-dim); border: 1px solid var(--border);
-  padding: 0.3rem 0.75rem; background: transparent;
+.nav-links a:hover { color: var(--cream); }
+
+/* ── HERO ── */
+.proj-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 9rem 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Meta strip */
+/* subtle grid background */
+.proj-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding-bottom: 4rem;
+  position: relative;
+}
+
+.proj-breadcrumb {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 2.5rem;
+}
+.proj-breadcrumb a { color: var(--muted); transition: color .2s; }
+.proj-breadcrumb a:hover { color: var(--cream); }
+.proj-breadcrumb span { opacity: 0.4; }
+
+.proj-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-weight: 700; color: var(--white);
+  letter-spacing: -0.03em; line-height: 1.04;
+  max-width: 900px; margin-bottom: 2rem;
+}
+.proj-title em { font-style: italic; color: var(--accent); }
+
+.proj-subtitle {
+  font-size: 1rem; color: var(--cream-dim);
+  max-width: 580px; line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+
+.proj-tools { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.proj-tool {
+  font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cream-dim); border: 1px solid var(--border);
+  padding: 0.28rem 0.7rem; background: transparent;
+  transition: border-color .2s, color .2s;
+}
+.proj-tool:hover { border-color: var(--border-hi); color: var(--cream); }
+
+/* ── CTA LINK (Observable) ── */
+.live-link-bar {
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--accent-glow);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap;
+}
+.live-link-label {
+  font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent);
+}
+.live-link-text {
+  font-size: 0.82rem; color: var(--cream);
+}
+.live-link-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 0.6rem 1.4rem;
+  white-space: nowrap;
+  transition: opacity .2s;
+}
+.live-link-btn:hover { opacity: 0.85; }
+.live-link-btn svg { width: 10px; height: 10px; }
+
+/* ── META STRIP ── */
 .proj-meta-strip {
   display: grid; grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--border);
@@ -61,99 +160,216 @@
   border-right: 1px solid var(--border);
 }
 .proj-meta-cell:last-child { border-right: none; }
-.proj-meta-label { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
-.proj-meta-val { font-size: 0.85rem; color: var(--cream); line-height: 1.5; }
+.proj-meta-label {
+  font-size: 0.48rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.45rem;
+}
+.proj-meta-val { font-size: 0.82rem; color: var(--cream); line-height: 1.55; }
 
-/* Content blocks */
-.proj-section { padding: 5rem 2.5rem; border-bottom: 1px solid var(--border); }
+/* ── SECTIONS ── */
+.proj-section {
+  padding: 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
 .proj-section:last-of-type { border-bottom: none; }
-.proj-eyebrow { font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+
+.proj-eyebrow {
+  font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1.25rem;
+}
 .proj-heading {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.4rem); font-weight: 700;
-  color: var(--white); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem;
+  font-size: clamp(1.45rem, 2.6vw, 2.3rem); font-weight: 700;
+  color: var(--white); letter-spacing: -0.02em; line-height: 1.15;
+  margin-bottom: 1.5rem;
 }
-.proj-heading em { font-style: italic; color: var(--cream); }
-.proj-body { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.9; max-width: 660px; }
+.proj-heading em { font-style: italic; color: var(--accent); }
+
+.proj-body { font-size: 0.88rem; color: var(--cream-dim); line-height: 1.92; max-width: 660px; }
 .proj-body p + p { margin-top: 1rem; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
-.two-col-img { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
 
-/* Image slots */
-.img-slot {
-  background: var(--surface); aspect-ratio: 4/3;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--muted); font-size: 0.55rem; letter-spacing: 0.18em;
-  text-transform: uppercase; overflow: hidden;
+/* ── POSTER FRAME ── */
+.poster-frame {
+  position: relative;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  overflow: hidden;
 }
-.img-slot.tall { aspect-ratio: 2/3; }
-.img-slot.wide { aspect-ratio: 16/9; }
-.img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.img-caption { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.75rem; }
+.poster-frame img {
+  display: block; width: 100%; height: auto;
+}
+.poster-frame::after {
+  content: '';
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.img-caption {
+  font-size: 0.5rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); margin-top: 0.8rem;
+}
 
-/* Process list */
+/* ── PROCESS LIST ── */
 .process-list { margin-top: 2.5rem; }
 .process-step {
-  display: grid; grid-template-columns: 48px 1fr;
-  gap: 1.75rem; align-items: start;
-  padding: 1.5rem 0; border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 52px 1fr;
+  gap: 2rem; align-items: start;
+  padding: 1.6rem 0; border-top: 1px solid var(--border);
 }
 .process-step:last-child { border-bottom: 1px solid var(--border); }
-.ps-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); padding-top: 0.1rem; }
-.ps-title { font-size: 0.82rem; color: var(--cream); margin-bottom: 0.3rem; }
-.ps-desc { font-size: 0.75rem; color: var(--cream-dim); line-height: 1.75; }
+.ps-num {
+  font-family: 'DM Mono', monospace; font-size: 0.56rem;
+  color: var(--muted); padding-top: 0.12rem;
+}
+.ps-title { font-size: 0.8rem; color: var(--cream); margin-bottom: 0.35rem; font-weight: 500; }
+.ps-desc { font-size: 0.74rem; color: var(--cream-dim); line-height: 1.78; }
 
-/* Prev/next nav */
+/* ── INSIGHT CARDS (new for DLX framing) ── */
+.insight-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  margin-top: 3rem;
+}
+.insight-card {
+  background: var(--surface);
+  padding: 2rem 1.75rem;
+}
+.insight-num {
+  font-family: 'DM Mono', monospace; font-size: 0.52rem;
+  color: var(--accent); margin-bottom: 1rem; display: block;
+}
+.insight-title { font-size: 0.82rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 500; }
+.insight-desc { font-size: 0.72rem; color: var(--cream-dim); line-height: 1.75; }
+
+/* ── CONTEXT CALLOUT ── */
+.context-callout {
+  margin-top: 2.5rem;
+  padding: 1.75rem 2rem;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-dim);
+}
+.context-callout p {
+  font-size: 0.84rem; color: var(--cream); line-height: 1.8;
+  font-style: italic;
+}
+.context-callout cite {
+  display: block; margin-top: 0.75rem;
+  font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); font-style: normal;
+}
+
+/* ── FOOTER NAV ── */
 .proj-footer-nav {
   display: grid; grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--border);
 }
 .pfn-item {
-  padding: 2.25rem 2.5rem; text-decoration: none; color: var(--cream);
+  padding: 2.25rem 2.5rem; color: var(--cream);
   display: flex; flex-direction: column; gap: 0.5rem;
   transition: background .2s;
 }
 .pfn-item:first-child { border-right: 1px solid var(--border); }
 .pfn-item:hover { background: var(--surface); }
-.pfn-dir { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.pfn-dir { font-size: 0.48rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
 .pfn-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); line-height: 1.3; }
 .pfn-next { align-items: flex-end; text-align: right; }
 
+footer {
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted);
+}
+footer a { transition: color .2s; }
+footer a:hover { color: var(--cream); }
+
+/* ── Fade-in on load ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-content > * {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+.proj-breadcrumb { animation-delay: 0.1s; }
+.proj-title      { animation-delay: 0.22s; }
+.proj-subtitle   { animation-delay: 0.34s; }
+.proj-tools      { animation-delay: 0.44s; }
+
+/* ── Responsive ── */
 @media (max-width: 780px) {
-  .proj-hero { padding: 7rem 1.5rem 2.5rem; }
+  nav { padding: 1rem 1.5rem; }
+  .proj-hero { padding: 8rem 1.5rem 0; }
+  .live-link-bar { padding: 1.25rem 1.5rem; }
   .proj-meta-strip { grid-template-columns: 1fr 1fr; }
   .proj-meta-cell { border-bottom: 1px solid var(--border); }
-  .proj-section { padding: 3.5rem 1.5rem; }
-  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-  .three-col, .two-col-img { grid-template-columns: 1fr; }
+  .proj-section { padding: 3rem 1.5rem; }
+  .two-col { grid-template-columns: 1fr; gap: 3rem; }
+  .insight-grid { grid-template-columns: 1fr; }
   .proj-footer-nav { grid-template-columns: 1fr; }
   .pfn-item:first-child { border-right: none; border-bottom: 1px solid var(--border); }
   .pfn-next { align-items: flex-start; text-align: left; }
+  footer { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Makhabbat Amanbay</span>
+  <div class="nav-links">
+    <a href="/portfolio-website/">Index</a>
+    <a href="/portfolio-website/#projects">Work</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <header class="proj-hero">
-  <div class="proj-meta-label"></div>
-  <div class="proj-breadcrumb">
-    <a href="/portfolio-website/">Makhabbat</a>
-    <span>/</span>
-    <a href="/portfolio-website/#projects">Work</a>
-    <span>/</span>
-    <span style="color:var(--cream-dim)">"NCT U Network"</span>
+  <div class="hero-content">
+    <div class="proj-breadcrumb">
+      <a href="/portfolio-website/">Makhabbat</a>
+      <span>/</span>
+      <a href="/portfolio-website/#projects">Work</a>
+      <span>/</span>
+      <span style="color:var(--cream-dim)">NCT U Network</span>
+    </div>
+    <h1 class="proj-title">"NCT U Network" —<br/><em>Data Visualization</em></h1>
+    <p class="proj-subtitle">Mapping fluid member combinations across NCT U's evolving structure using network graph methods and circular chord diagrams.</p>
+    <div class="proj-tools">
+      <span class="proj-tool">D3.js</span>
+      <span class="proj-tool">Observable</span>
+      <span class="proj-tool">Adobe Illustrator</span>
+      <span class="proj-tool">Information Design</span>
+      <span class="proj-tool">ID221 · KAIST</span>
+    </div>
   </div>
-  <h1 class="proj-title">"NCT U Network" — Data Visualization</h1>
-  <div class="proj-tools">
-    <span class="proj-tool">Adobe Illustrator</span>
-    <span class="proj-tool">D3.js</span>
-    <span class="proj-tool">Information Design</span>
-    <span class="proj-tool">ID221</span>
+
+  <!-- scroll hint -->
+  <div style="padding: 2rem 0; display:flex; align-items:center; gap:0.75rem; position:relative;">
+    <div style="width:1px; height:48px; background:var(--border);"></div>
+    <span style="font-size:0.48rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted);">Scroll to explore</span>
   </div>
 </header>
+
+<!-- LIVE CODE LINK BAR -->
+<div class="live-link-bar">
+  <div>
+    <div class="live-link-label">Interactive Source</div>
+    <div class="live-link-text">D3.js network visualization — full code &amp; interactive version on Observable</div>
+  </div>
+  <a href="https://observablehq.com/@data-vis-for-p3/p3-main-code-for-submission"
+     target="_blank" rel="noopener" class="live-link-btn">
+    View on Observable
+    <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
 
 <!-- META STRIP -->
 <div class="proj-meta-strip">
@@ -162,18 +378,16 @@
     <div class="proj-meta-val">ID221<br/>Information Design</div>
   </div>
   <div class="proj-meta-cell">
-    <div class="proj-meta-label">Type</div>
-    <div class="proj-meta-val">Infographic</div>
-    <div class="proj-meta-val">Data Visualization</div>
+    <div class="proj-meta-label">Output</div>
+    <div class="proj-meta-val">Static Poster<br/>+ Interactive D3</div>
   </div>
   <div class="proj-meta-cell">
     <div class="proj-meta-label">Tools</div>
-    <div class="proj-meta-val">Adobe Illustrator</div>
-    <div class="proj-meta-val">D3.js</div>
+    <div class="proj-meta-val">D3.js · Observable<br/>Adobe Illustrator</div>
   </div>
   <div class="proj-meta-cell">
     <div class="proj-meta-label">Year</div>
-    <div class="proj-meta-val">2025 fall</div>
+    <div class="proj-meta-val">2025 Fall</div>
   </div>
 </div>
 
@@ -184,29 +398,60 @@
       <div class="proj-eyebrow">Overview</div>
       <h2 class="proj-heading">Visualizing a group built on <em>fluid</em> connections</h2>
       <div class="proj-body">
-        <p>This project explores NCT U as a network rather than a fixed unit. Instead of focusing only on discography, I wanted to show how members connect, reappear, and form new combinations across different releases and eras.</p>
-        <p>The final poster maps these changing relationships through a chord-diagram-based system, emphasizing both continuity and variation. It highlights how some members become recurring connectors while others appear in more specific or temporary combinations.</p>
+        <p>This project explores NCT U as a network rather than a fixed unit. Instead of focusing on discography, I wanted to show how members connect, reappear, and form new combinations across different releases and eras.</p>
+        <p>The final poster maps these changing relationships through a chord-diagram-based system, emphasizing both continuity and variation — how some members become recurring connectors while others appear in more specific or temporary combinations.</p>
       </div>
 
-      <h2 class="proj-heading" style="margin-top:3rem;">How it was made</h2>
-      <div class="proj-body">
-        <p>[11.11.2025] I began with a broad interest in K-pop data and NCT’s large-scale structure, first considering awards, unit history, and progression over time.</p>
-
-        <p>[19.11.2025] I collected references and possible data sources, including album sales, YouTube statistics, Spotify streams, fan-made documentation, and discography archives. During that stage, I realized that discography alone felt too expected and did not capture what makes NCT especially interesting.</p>
-
-        <p>[20.11.2025] After feedback from my professor, I shifted the focus from releases themselves to members and relationships. That feedback helped clarify that the most compelling part of NCT is not just the amount of content, but the unusual member structure and how it constantly reorganizes.</p>
-
-        <p>[23.11.2025] I explored several possible directions. One idea was a member-connection network outside the fixed units. Another was a heatmap comparing individual member activity, and another was a timeline visualization focused on Mark as one of the most cross-unit members.</p>
-
-        <p>I eventually chose the NCT U network approach because it best reflected the group’s identity. I developed a circular composition showing member combinations, used color coding to distinguish affiliations, and structured the poster around key years — 2016, 2018, 2020, and 2022 — to reveal how the scale and density of collaborations changed over time.</p>
+      <div class="context-callout">
+        <p>"The most interesting data story is not always the biggest or most complete one. Narrowing focus from all NCT-related data to member relationships made the structure — and its meaning — visible."</p>
+        <cite>Design reflection · ID221</cite>
       </div>
     </div>
 
     <div>
-      <div class="poster-full">
+      <div class="poster-frame">
         <img src="p3_versionfornotion.png" alt="Final NCT U Network data visualization poster"/>
       </div>
-      <div class="img-caption">Final Poster</div>
+      <div class="img-caption">Final Poster — chord diagram system, Illustrator</div>
+
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: var(--surface2); border: 1px solid var(--border);">
+        <div class="proj-meta-label" style="margin-bottom:0.6rem;">Interactive Version</div>
+        <div style="font-size:0.78rem; color:var(--cream-dim); line-height:1.7; margin-bottom:1rem;">
+          The D3.js network built in Observable allows exploration of individual member connections and year-by-year density shifts.
+        </div>
+        <a href="https://observablehq.com/@data-vis-for-p3/p3-main-code-for-submission"
+           target="_blank" rel="noopener"
+           style="font-size:0.52rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); display:inline-flex; align-items:center; gap:0.4rem; border-bottom: 1px solid var(--accent); padding-bottom:1px;">
+          Open in Observable ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY DESIGN INSIGHTS (new — relevant to DLX's science-design thinking) -->
+<section class="proj-section">
+  <div class="proj-eyebrow">Design Decisions</div>
+  <h2 class="proj-heading">Three questions that shaped the <em>structure</em></h2>
+  <div class="proj-body">
+    <p>Each design decision came from asking what the data was really trying to say — and whether the visual form was earning its complexity.</p>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <span class="insight-num">01 · Data Selection</span>
+      <div class="insight-title">What is the right unit of analysis?</div>
+      <div class="insight-desc">I chose member co-appearances over release metrics because the structure of NCT is its most distinctive feature — not its sales. The data had to support an argument, not just represent a corpus.</div>
+    </div>
+    <div class="insight-card">
+      <span class="insight-num">02 · Visual Encoding</span>
+      <div class="insight-title">How do you show change over time in a static form?</div>
+      <div class="insight-desc">Rather than animating, I structured the poster around four discrete years — 2016, 2018, 2020, 2022 — treating each as a network snapshot. Density and arc thickness carry the temporal story.</div>
+    </div>
+    <div class="insight-card">
+      <span class="insight-num">03 · Audience</span>
+      <div class="insight-title">Who is this for, and what do they need to understand?</div>
+      <div class="insight-desc">The challenge was balancing legibility for outside viewers with enough specificity to be meaningful to fans. The chord diagram is the compromise — complex enough to reward attention, structured enough to read at a glance.</div>
     </div>
   </div>
 </section>
@@ -221,31 +466,35 @@
       <div class="ps-num">01</div>
       <div>
         <div class="ps-title">Topic framing</div>
-        <div class="ps-desc">I started from the wider category of K-pop and NCT, considering sales, streaming performance, unit history, and overall activity. At that point, the project was information-heavy, but the story still felt too general.</div>
+        <div class="ps-desc">I started from the wider category of K-pop and NCT, considering sales, streaming performance, unit history, and overall activity. The project was information-heavy, but the story still felt too general — the data existed without a thesis.</div>
       </div>
     </div>
-
     <div class="process-step">
       <div class="ps-num">02</div>
       <div>
         <div class="ps-title">Feedback and redirection</div>
-        <div class="ps-desc">Professor feedback pushed me to focus on members rather than discography. That shift helped me identify the real design question: how can I make NCT U’s changing combinations visible in a way that feels intuitive and visually engaging?</div>
+        <div class="ps-desc">Professor feedback pushed me to focus on members rather than discography. That shift helped surface the real design question: how can I make NCT U's changing combinations visible in a way that feels intuitive and visually engaging?</div>
       </div>
     </div>
-
     <div class="process-step">
       <div class="ps-num">03</div>
       <div>
         <div class="ps-title">Testing multiple concepts</div>
-        <div class="ps-desc">I tested several possibilities, including a hand-drawn member network, an all-member activity heatmap, and a Mark-centered timeline. These drafts helped me compare what was interesting analytically versus what was strong enough visually for a poster.</div>
+        <div class="ps-desc">I prototyped a hand-drawn member network, an all-member activity heatmap, and a Mark-centered timeline. These drafts helped me compare what was analytically interesting versus what was strong enough visually to carry a full poster.</div>
       </div>
     </div>
-
     <div class="process-step">
       <div class="ps-num">04</div>
       <div>
+        <div class="ps-title">D3.js implementation on Observable</div>
+        <div class="ps-desc">I built the network graph programmatically in D3.js using Observable notebooks, which allowed rapid iteration on force layout parameters and color encoding before finalizing the static poster composition in Illustrator.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num">05</div>
+      <div>
         <div class="ps-title">Final system</div>
-        <div class="ps-desc">The final direction used circular network visualizations to compare major NCT U phases. I focused on combinations, recurring members, and shifts in density, then refined the composition in Illustrator to balance explanation, hierarchy, and visual impact.</div>
+        <div class="ps-desc">Circular network visualizations compare major NCT U phases across four key years. I focused on combinations, recurring members, and shifts in density, then refined composition in Illustrator to balance hierarchy, explanation, and visual impact.</div>
       </div>
     </div>
   </div>
@@ -258,29 +507,29 @@
       <div class="proj-eyebrow">Reflection</div>
       <h2 class="proj-heading">What I learned</h2>
       <div class="proj-body">
-        <p>This project taught me that the most interesting data story is not always the biggest or most complete one. Narrowing the focus from all NCT-related information to member relationships made the visualization much more specific and meaningful.</p>
-        <p>I also learned how important iteration is in data visualization. The early ideas — including the heatmap and the Mark-focused concept — were useful not because they became the final work, but because they helped me understand what kind of structure and storytelling this project really needed.</p>
+        <p>This project taught me that the most interesting data story is not always the biggest or most complete one. Narrowing focus from all NCT-related information to member relationships made the visualization far more specific and meaningful.</p>
+        <p>I also learned how important iteration is in data visualization. The early concepts — heatmap, Mark-focused timeline — were valuable not because they became the final work, but because they helped clarify what structure and storytelling this project actually needed.</p>
       </div>
     </div>
     <div>
       <div class="proj-eyebrow">Challenges</div>
       <h2 class="proj-heading">What was hard</h2>
       <div class="proj-body">
-        <p>The hardest part was finding a format that could handle NCT’s complexity without becoming unreadable. Because the group has many members, units, and overlapping appearances, some layouts became too crowded or failed to justify certain members or units.</p>
-        <p>Another challenge was balancing fan knowledge with clarity for outside viewers. I wanted the work to stay rooted in the specificity of NCT while still being understandable as a visual explanation of connection, scale, and change.</p>
+        <p>The hardest part was finding a format that could handle NCT's complexity without becoming unreadable. Many layouts became too crowded or failed to justify why certain members appeared where they did.</p>
+        <p>Another challenge was balancing fan knowledge with clarity for outside viewers — staying specific enough to be credible while remaining legible as a general explanation of connection, scale, and change.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PREV / NEXT -->
+<!-- FOOTER NAV -->
 <nav class="proj-footer-nav">
   <a href="/portfolio-website/#projects" class="pfn-item">
     <span class="pfn-dir">← Back</span>
     <span class="pfn-title">All selected work</span>
   </a>
   <a href="/portfolio-website/project-genz-infographic.html" class="pfn-item pfn-next">
-    <span class="pfn-dir">Previous →</span>
+    <span class="pfn-dir">Next →</span>
     <span class="pfn-title">"Gen Z Trapped" Doomscrolling Infographic</span>
   </a>
 </nav>
@@ -291,6 +540,5 @@
   <a href="/portfolio-website/">← Portfolio</a>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
