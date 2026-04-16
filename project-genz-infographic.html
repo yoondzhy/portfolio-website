@@ -9,6 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
 <style>
+:root {
+  --bg:         #02112a;
+  --surface:    #f9cac3;
+  --surface2:   #e8e4c5;
+  --border:     rgba(255, 219, 209, 0.12);
+  --border-hi:  rgba(255, 219, 209, 0.22);
+  --white:      #ffb8ed;
+  --cream:      #ffb8ed;
+  --cream-dim:  #fa9ebc;
+  --muted:      rgba(255, 219, 209, 0.6);
+  --accent:     #fa9ebc;
+}
+
 /* ── Project page extras ── */
 .poster-full {
   width: 100%;
@@ -30,21 +43,26 @@
   padding: 8rem 2.5rem 3.5rem;
   border-bottom: 1px solid var(--border);
 }
+
 .proj-breadcrumb {
   display: flex; align-items: center; gap: 0.6rem;
   font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 2rem;
 }
+
 .proj-breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
 .proj-breadcrumb a:hover { color: var(--cream); }
 .proj-breadcrumb span { opacity: 0.4; }
+
 .proj-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 5.5vw, 5rem); font-weight: 700;
   color: var(--white); letter-spacing: -0.03em; line-height: 1.05;
   max-width: 860px; margin-bottom: 1.75rem;
 }
+
 .proj-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
 .proj-tool {
   font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--cream-dim); border: 1px solid var(--border);
@@ -56,10 +74,12 @@
   display: grid; grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--border);
 }
+
 .proj-meta-cell {
   padding: 1.75rem 2.5rem;
   border-right: 1px solid var(--border);
 }
+
 .proj-meta-cell:last-child { border-right: none; }
 .proj-meta-label { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
 .proj-meta-val { font-size: 0.85rem; color: var(--cream); line-height: 1.5; }
@@ -68,11 +88,13 @@
 .proj-section { padding: 5rem 2.5rem; border-bottom: 1px solid var(--border); }
 .proj-section:last-of-type { border-bottom: none; }
 .proj-eyebrow { font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+
 .proj-heading {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.5rem, 2.8vw, 2.4rem); font-weight: 700;
   color: var(--white); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem;
 }
+
 .proj-heading em { font-style: italic; color: var(--cream); }
 .proj-body { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.9; max-width: 660px; }
 .proj-body p + p { margin-top: 1rem; }
@@ -88,6 +110,7 @@
   color: var(--muted); font-size: 0.55rem; letter-spacing: 0.18em;
   text-transform: uppercase; overflow: hidden;
 }
+
 .img-slot.tall { aspect-ratio: 2/3; }
 .img-slot.wide { aspect-ratio: 16/9; }
 .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -100,6 +123,7 @@
   gap: 1.75rem; align-items: start;
   padding: 1.5rem 0; border-top: 1px solid var(--border);
 }
+
 .process-step:last-child { border-bottom: 1px solid var(--border); }
 .ps-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); padding-top: 0.1rem; }
 .ps-title { font-size: 0.82rem; color: var(--cream); margin-bottom: 0.3rem; }
@@ -110,11 +134,13 @@
   display: grid; grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--border);
 }
+
 .pfn-item {
   padding: 2.25rem 2.5rem; text-decoration: none; color: var(--cream);
   display: flex; flex-direction: column; gap: 0.5rem;
   transition: background .2s;
 }
+
 .pfn-item:first-child { border-right: 1px solid var(--border); }
 .pfn-item:hover { background: var(--surface); }
 .pfn-dir { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }

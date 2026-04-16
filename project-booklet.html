@@ -10,309 +10,311 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/blasten/turn.js@master/turn.min.js"></script>
-  <style>
-    :root {
-      --white: #f9f8f4;
-      --cream: #e6e4df;
-      --cream-dim: #bab9b4;
-      --muted: #7a7974;
-      --border: #dcd9d5;
-      --surface: #fbfbf9;
-      --dark: #1a1a1a;
-    }
+<style>
+  :root {
+    --white: #f7f5f0;       /* soft off-white */
+    --cream: #e8e2d6;       /* warm light beige */
+    --cream-dim: #6f6a63;   /* muted warm gray */
+    --muted: #8a847c;       /* lighter muted text */
+    --border: #ddd8cf;      /* soft border */
+    --surface: #fbfaf7;     /* page background */
+    --dark: #2f2c28;        /* soft dark brown-gray */
+    --hero-bg: #d9d2c3;     /* gentle hero background */
+    --button-bg: #f1ede6;   /* subtle control bg */
+    --button-hover: #e7e1d7;
+  }
 
-    /* Project page styles matching Gen Z / NCT pages */
-    .proj-hero {
-      min-height: 52vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 8rem 2.5rem 3.5rem;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
-      border-bottom: 1px solid var(--border);
-    }
+  .proj-hero {
+    min-height: 52vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 2.5rem 3.5rem;
+    background: linear-gradient(135deg, var(--hero-bg) 0%, #e7e1d7 100%);
+    border-bottom: 1px solid var(--border);
+  }
 
-    .proj-breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
+  .proj-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
 
-    .proj-breadcrumb a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color .2s;
-    }
+  .proj-breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
 
-    .proj-breadcrumb a:hover { color: var(--cream); }
-    .proj-breadcrumb span { opacity: 0.4; }
+  .proj-breadcrumb a:hover { color: var(--dark); }
+  .proj-breadcrumb span { opacity: 0.5; }
 
-    .proj-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5.5vw, 5rem);
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      max-width: 860px;
-      margin-bottom: 1.75rem;
-    }
+  .proj-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 5rem);
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 860px;
+    margin-bottom: 1.75rem;
+  }
 
-    .proj-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+  .proj-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-    .proj-tool {
-      font-size: 0.52rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cream-dim);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem;
-      background: transparent;
-    }
+  .proj-tool {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    border: 1px solid var(--border);
+    padding: 0.38rem 0.8rem;
+    background: rgba(255,255,255,0.45);
+    border-radius: 999px;
+  }
 
-    .proj-meta-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
+  .proj-meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
 
+  .proj-meta-cell {
+    padding: 1.75rem 2.5rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .proj-meta-cell:last-child { border-right: none; }
+
+  .proj-meta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.45rem;
+  }
+
+  .proj-meta-val {
+    font-size: 0.95rem;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  .proj-section {
+    padding: 5rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .proj-section:last-of-type { border-bottom: none; }
+
+  .proj-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .proj-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .proj-heading em {
+    font-style: italic;
+    color: #9b8f7a;
+  }
+
+  .proj-body {
+    font-size: 1rem;
+    color: var(--cream-dim);
+    line-height: 1.85;
+    max-width: 660px;
+  }
+
+  .proj-body p + p { margin-top: 1rem; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .process-list { margin-top: 2.5rem; }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.75rem;
+    align-items: start;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .process-step:last-child { border-bottom: 1px solid var(--border); }
+
+  .ps-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    padding-top: 0.1rem;
+  }
+
+  .ps-title {
+    font-size: 0.95rem;
+    color: var(--dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .ps-desc {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.75;
+  }
+
+  .proj-footer-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .pfn-item {
+    padding: 2.25rem 2.5rem;
+    text-decoration: none;
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background .2s;
+  }
+
+  .pfn-item:first-child { border-right: 1px solid var(--border); }
+  .pfn-item:hover { background: #f3eee6; }
+
+  .pfn-dir {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .pfn-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--dark);
+    line-height: 1.3;
+  }
+
+  .pfn-next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .booklet-shell {
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    background: #fffdfa;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .booklet-viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #flipbook {
+    width: 1000px;
+    height: 700px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  #flipbook .page {
+    background: #fffdfa;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+  #flipbook .page img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .book-controls {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .book-controls button {
+    border: 1px solid var(--border);
+    background: var(--button-bg);
+    color: var(--dark);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+    border-radius: 4px;
+  }
+
+  .book-controls button:hover {
+    background: var(--button-hover);
+  }
+
+  .book-note {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  @media (max-width: 780px) {
+    .proj-hero { padding: 7rem 1.5rem 2.5rem; }
+    .proj-meta-strip { grid-template-columns: 1fr 1fr; }
     .proj-meta-cell {
-      padding: 1.75rem 2.5rem;
-      border-right: 1px solid var(--border);
-    }
-
-    .proj-meta-cell:last-child { border-right: none; }
-
-    .proj-meta-label {
-      font-size: 0.5rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .proj-meta-val {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .proj-section {
-      padding: 5rem 2.5rem;
       border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      border-right: none;
     }
+    .proj-meta-cell:nth-child(2n) { border-left: 1px solid var(--border); }
+    .proj-section { padding: 3.5rem 1.5rem; }
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    .proj-footer-nav { grid-template-columns: 1fr; }
+    .pfn-item:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .pfn-next { align-items: flex-start; text-align: left; }
 
-    .proj-section:last-of-type { border-bottom: none; }
-
-    .proj-eyebrow {
-      font-size: 0.52rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .proj-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-    }
-
-    .proj-heading em { 
-      font-style: italic; 
-      color: var(--cream); 
-    }
-
-    .proj-body {
-      font-size: 0.9rem;
-      color: var(--cream-dim);
-      line-height: 1.9;
-      max-width: 660px;
-    }
-
-    .proj-body p + p { margin-top: 1rem; }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .process-list { margin-top: 2.5rem; }
-
-    .process-step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 1.75rem;
-      align-items: start;
-      padding: 1.5rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .process-step:last-child { border-bottom: 1px solid var(--border); }
-
-    .ps-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--muted);
-      padding-top: 0.1rem;
-    }
-
-    .ps-title {
-      font-size: 0.82rem;
-      color: var(--cream);
-      margin-bottom: 0.3rem;
-    }
-
-    .ps-desc {
-      font-size: 0.75rem;
-      color: var(--cream-dim);
-      line-height: 1.75;
-    }
-
-    .proj-footer-nav {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    .pfn-item {
-      padding: 2.25rem 2.5rem;
-      text-decoration: none;
-      color: var(--cream);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      transition: background .2s;
-    }
-
-    .pfn-item:first-child { border-right: 1px solid var(--border); }
-    .pfn-item:hover { background: rgba(255,255,255,0.03); }
-
-    .pfn-dir {
-      font-size: 0.5rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .pfn-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--white);
-      line-height: 1.3;
-    }
-
-    .pfn-next {
-      align-items: flex-end;
-      text-align: right;
-    }
-
-    /* Flipbook styles */
-    .booklet-shell {
-      margin-top: 3rem;
-      border: 1px solid var(--border);
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-    }
-
-    .booklet-viewer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    #flipbook {
-      width: 1000px;
-      height: 700px;
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    #flipbook .page {
-      background: #fffdf8;
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
-    }
-
-    #flipbook .page img {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .book-controls {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .book-controls button {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--cream);
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 0.7rem 1rem;
-      cursor: pointer;
-      transition: background .2s, color .2s;
-      border-radius: 4px;
-    }
-
-    .book-controls button:hover {
-      background: rgba(255,255,255,0.05);
-    }
-
-    .book-note {
-      font-size: 0.58rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    @media (max-width: 780px) {
-      .proj-hero { padding: 7rem 1.5rem 2.5rem; }
-      .proj-meta-strip { grid-template-columns: 1fr 1fr; }
-      .proj-meta-cell { 
-        border-bottom: 1px solid var(--border); 
-        border-right: none; 
-      }
-      .proj-meta-cell:nth-child(2n) { border-left: 1px solid var(--border); }
-      .proj-section { padding: 3.5rem 1.5rem; }
-      .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-      .proj-footer-nav { grid-template-columns: 1fr; }
-      .pfn-item:first-child { border-right: none; border-bottom: 1px solid var(--border); }
-      .pfn-next { align-items: flex-start; text-align: left; }
-
-      .booklet-shell { padding: 1rem; }
-      #flipbook { height: 460px; }
-    }
-  </style>
+    .booklet-shell { padding: 1rem; }
+    #flipbook { height: 460px; }
+  }
+</style>
 </head>
 <body>
 
@@ -464,9 +466,9 @@
     <span class="pfn-dir">← Back</span>
     <span class="pfn-title">All selected work</span>
   </a>
-  <a href="/portfolio-website/project-nct-network.html" class="pfn-item pfn-next">
+  <a href="/portfolio-website/project-kinetic-typography.html" class="pfn-item pfn-next">
     <span class="pfn-dir">Next →</span>
-    <span class="pfn-title">"NCT U Network" Data Visualization</span>
+    <span class="pfn-title">Kinetic Typography — Yel, “About Last Night”</span>
   </a>
 </nav>
 
